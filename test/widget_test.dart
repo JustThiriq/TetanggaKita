@@ -6,6 +6,6 @@ void main() {
     await tester.pumpWidget(const TetanggaKitaApp());
     expect(find.text('TETANGGA KITA'), findsOneWidget);
     await tester.pumpAndSettle(const Duration(seconds: 3));
-    expect(find.text('Halaman Login'), findsOneWidget);
+    expect(find.text('Masuk ke TetanggaKita'), findsOneWidget);
   });
 }
