@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
+import 'screens/login_screen.dart';
 
 void main() {
   runApp(const TetanggaKitaApp());
@@ -22,9 +23,7 @@ class TetanggaKitaApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
-        '/login': (context) => const Scaffold(
-          body: Center(child: Text('Halaman Login')),
-        ),
+        '/login': (context) => const LoginScreen(),
       },
     );
   }
