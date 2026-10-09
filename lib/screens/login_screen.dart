@@ -8,6 +8,17 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+    final _formKey = GlobalKey<FormState>();
+    final _identifierController = TextEditingController();
+    final _passwordController = TextEditingController();
+
+    @override
+    void dispose() {
+        _identifierController.dispose();
+        _passwordController.dispose();
+        super.dispose();
+    }
+
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -51,6 +62,63 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                             ),
                             const SizedBox(height: 32),
+
+                            Form(
+                                key: _formKey,
+                                child: Column(
+                                    children: [
+                                        TextFormField(
+                                            controller: _identifierController,
+                                            keyboardType: TextInputType.emailAddress,
+                                            decoration: InputDecoration(
+                                                labelText: 'Email atau NIK',
+                                                hintText: 'nama@gmail.com atau 3201...',
+                                                prefixIcon: const Icon(Icons.person_outline_rounded),
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                border: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(12),
+                                                    borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                                                ),
+                                            ),
+                                            validator: (value) {
+                                                if (value == null || value.isEmpty) {
+                                                    return 'Email atau NIK tidak boleh kosong';
+                                                }
+                                                if (value.length < 6) {
+                                                    return 'Kata sandi minimal 6 karakter';
+                                                }
+                                                return null;
+                                            },
+                                        ),
+                                        const SizedBox(height: 16),
+                                        TextFormField(
+                                            controller: _passwordController,
+                                            obscureText: true,
+                                            decoration: InputDecoration(
+                                                labelText: 'Kata Sandi',
+                                                hintText: '********',
+                                                prefixIcon:const Icon(Icons.lock_outline_rounded),
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                border: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(12),
+                                                    borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                                                ),
+                                            ),
+                                            validator: (value) {
+                                                if (value == null || value.isEmpty) {
+                                                    return 'Kata sandi tidak boleh kosong';
+                                                }
+                                                if (value.length < 6) {
+                                                    return 'Kata sandi minimal 6 karakter';
+                                                }
+                                                return null;
+                                            },
+                                        ),
+                                    ],
+                                ),
+                            ),
                         ],
                     ),
                 ),
